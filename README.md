@@ -23,10 +23,12 @@ The **Redux Toolkit** is a standardized way to write Redux logic (create actions
 > The store holds the whole state tree of your application. The only way to change the state inside it is to dispatch an action on it.
 
 ### Actions
-> Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed. Types should typically be defined as string constants. Once your app is large enough, you may want to move them into a separate module.
+> Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed. 
+> Types should typically be defined as string constants. Once your app is large enough, you may want to move them into a separate module.
 
 ### Reducers
-> Reducers specify how the application's state changes in response to actions sent to the store. Remember that actions only describe what happened, but don't describe how the application's state changes.
+> Reducers specify how the application's state changes in response to actions sent to the store. 
+> Remember that actions only describe what happened, but don't describe how the application's state changes.
 
 ### Dispatch
 > Dispatching an action is the only way to trigger a state change.
@@ -35,7 +37,8 @@ The **Redux Toolkit** is a standardized way to write Redux logic (create actions
 > Selectors are functions that take the Redux store state as an argument and return some data to pass to the component.
 
 ### Thunk
-> Thunk is a programming concept where a function is used to delay the evaluation/calculation of an operation.
+> A thunk is a specific kind of Redux function that can contain asynchronous logic. 
+> Thunks are typically used to make async requests to a server and dispatch actions in response to the returned data.
 
 ### Slice
 > A slice is a collection of reducer logic and actions for a single feature of your app.
