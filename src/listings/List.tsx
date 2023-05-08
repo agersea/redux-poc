@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Container, CssBaseline, Drawer } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 import { AppState } from '../store'
 import { Dto, ListProps } from './dtos'
-import { listSelector, setActive, setList } from './listingsSlice'
+import { fetchListings, listSelector, setActive, setList } from './listingsSlice'
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -15,13 +15,23 @@ const columns: GridColDef[] = [
 ];
 
 function List(p: ListProps) {
+  // destructure the updatedAt property from the props to display last value from static page rendering
   const { updatedAt } = p
-  const dispatch = useDispatch()
+
+  // encapsulated state for the drawer works alongside Redux manged state
   const [state, setState] = useState({ drawerActive: false })
 
+  // create selectors to get the active listing and the list of listings
   const al: Dto | null = useSelector((s: AppState) => s.listings.active)
   const dl: Dto[] = useSelector(listSelector) // same as: const tl =
 
+  // create a dispatch function to trigger actions and thunks
+  const dispatch = useDispatch()
+
+  // wrap the fetchListings thunk in a useEffect hook to trigger it on page load and prevent infinite loops
+  useEffect(() => { dispatch(fetchListings()) }, [])
+
+  // change values for the active listing and update corresponding values in the list
   function btnHandler() {
     if (!al) return
     const changed: Dto = {
@@ -43,7 +53,6 @@ function List(p: ListProps) {
     dispatch(setList(cList))
   }
 
-
   return <>
     <CssBaseline />
     <Drawer
@@ -61,6 +70,7 @@ function List(p: ListProps) {
     </Drawer>
     <Container maxWidth='xl'>
       <h2>Listings - {updatedAt}</h2>
+      <p>Select a Listing to view its details</p>
       <DataGrid
         columns={columns}
         initialState={{

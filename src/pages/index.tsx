@@ -15,7 +15,7 @@ const IndexPage: NextPage = () => {
       </Head>
       <header className={styles.header}>
         <Counter />
-        <Link href="/listings"><h2>Listings</h2></Link>
+        <Link href="/listings"><h2>Click Here for Redux POC</h2></Link>
       </header>
     </div>
   )

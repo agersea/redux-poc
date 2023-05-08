@@ -1,20 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AppState } from '../store'
+import { AppDispatch, AppState } from '../store'
 import { Dto, State} from './dtos'
 
-// define the initial state using LS type
+// define the initial state using Listings State interface
 const initialState: State = {
     active: null,
-    list: <Dto[]>[
-      { id: 'l1', description: 'This is the first listing', name: 'First Name', title: 'First Listing', },
-      { id: 'l2', description: 'This is the second listing', name: 'Second Name', title: 'Second Listing', },
-      { id: 'l3', description: 'This is the third listing', name: 'Third Name', title: 'Third Listing', },
-      { id: 'l4', description: 'This is the fourth listing', name: 'Fourth Name', title: 'Fourth Listing', },
-      { id: 'l5', description: 'This is the fifth listing', name: 'Fifth Name', title: 'Fifth Listing', },
-      { id: 'l6', description: 'This is the sixth listing', name: 'Sixth Name', title: 'Sixth Listing', },
-      { id: 'l7', description: 'This is the seventh listing', name: 'Seventh Name', title: 'Seventh Listing', },
-    ],
+    list: <Dto[]>[],
 }
+
 
 /** createSlice() is a function that accepts an initial state, an object full of reducer functions, and a "slice name",
  *  and automatically generates action creators and action types that correspond to the reducers and state.
@@ -34,12 +27,30 @@ export const listingsSlice = createSlice({
       state.active = action.payload
     },
     setList: (state, action: PayloadAction<Dto[]>) => { state.list = action.payload },
-  }
+  },
 })
 
 
-export const { setList } = listingsSlice.actions
-export const { setActive } = listingsSlice.actions
+export const { setActive, setList } = listingsSlice.actions
+
+// ********** Thunks **********
+// thunks handle async logic and then dispatch a synchronous action with the results
+export const fetchListings = () => {
+  return async (dispatch: AppDispatch): Promise<void> => {
+    const response = await fetch('https://labs-1a789-default-rtdb.firebaseio.com/listings.json')
+    const body = await response.json()
+    const result: Dto[] = []
+    // transform object structure from firebase object to an array
+    for (const k in body) {
+      const listing = {
+        id: k,
+        ...body[k]
+      }
+      result.push(listing)
+    }
+    dispatch(setList(result))
+  }
+}
 
 // ********** Selectors **********
 // The function below is called a selector and allows us to select a value from

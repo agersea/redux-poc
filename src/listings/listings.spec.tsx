@@ -5,8 +5,8 @@ describe('listings state', () => {
     const s = store.getState().listings
     expect(s.active).toBeNull()
   })
-  it('should init with 7 elements in the list array', () => {
+  it('should init with an empty array', () => {
     const s = store.getState().listings
-    expect(s.list.length).toBe(7)
+    expect(s.list.length).toBe(0)
   })
 })
