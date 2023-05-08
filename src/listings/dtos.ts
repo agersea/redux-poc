@@ -5,6 +5,10 @@ export interface Dto {
   title: string,
 }
 
+export interface ListProps {
+  updatedAt: string
+}
+
 export interface State {
   active: Dto | null,
   list: Dto[],

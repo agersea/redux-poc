@@ -4,7 +4,7 @@ import { Button, Container, CssBaseline, Drawer } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 import { AppState } from '../store'
-import { Dto } from './dtos'
+import { Dto, ListProps } from './dtos'
 import { setActive, setList } from './listingsSlice'
 
 const columns: GridColDef[] = [
@@ -14,7 +14,8 @@ const columns: GridColDef[] = [
   { field: 'title', headerName: 'Title', width: 130 },
 ];
 
-function List() {
+function List(p: ListProps) {
+  const { updatedAt } = p
   // const dl = useSelector(list)
   const dispatch = useDispatch()
   const [state, setState] = useState({ drawerActive: false })
@@ -60,7 +61,7 @@ function List() {
       </Container>
     </Drawer>
     <Container maxWidth='xl'>
-      <h2>Listings</h2>
+      <h2>Listings - {updatedAt}</h2>
       <DataGrid
         columns={columns}
         initialState={{
