@@ -5,7 +5,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 import { AppState } from '../store'
 import { Dto, ListProps } from './dtos'
-import { setActive, setList } from './listingsSlice'
+import { listSelector, setActive, setList } from './listingsSlice'
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -16,12 +16,11 @@ const columns: GridColDef[] = [
 
 function List(p: ListProps) {
   const { updatedAt } = p
-  // const dl = useSelector(list)
   const dispatch = useDispatch()
   const [state, setState] = useState({ drawerActive: false })
 
   const al: Dto | null = useSelector((s: AppState) => s.listings.active)
-  const dl: Dto[] = useSelector((s: AppState) => s.listings.list)
+  const dl: Dto[] = useSelector(listSelector) // same as: const tl =
 
   function btnHandler() {
     if (!al) return

@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { AppState } from '../store'
 import { Dto, State} from './dtos'
 
 // define the initial state using LS type
@@ -36,13 +37,14 @@ export const listingsSlice = createSlice({
   }
 })
 
+
 export const { setList } = listingsSlice.actions
 export const { setActive } = listingsSlice.actions
 
 // ********** Selectors **********
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const listSelector = (state: State) => state.list
+// in the slice file. For example: `useSelector((state: AppState) => state.listings.list)`
+export const listSelector = (s: AppState) => s.listings.list
 
 export default listingsSlice.reducer
