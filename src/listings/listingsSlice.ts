@@ -34,7 +34,7 @@ export const listingsSlice = createSlice({
 export const { setActive, setList } = listingsSlice.actions
 
 // ********** Thunks **********
-// thunks handle async logic and then dispatch a synchronous action with the results
+// thunks handle async logic and then dispatch asynchronous action with the results
 export const fetchListings = () => {
   return async (dispatch: AppDispatch): Promise<void> => {
     const response = await fetch('https://labs-1a789-default-rtdb.firebaseio.com/listings.json')
