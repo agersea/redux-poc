@@ -4,11 +4,15 @@ import { Dto, State} from './dtos'
 // define the initial state using LS type
 const initialState: State = {
     active: null,
-    list: <Dto[]>[{
-        id: 'l1',
-        title: 'First Listing',
-        description: 'This is the first listing',
-    }],
+    list: <Dto[]>[
+      { id: 'l1', description: 'This is the first listing', name: 'First Name', title: 'First Listing', },
+      { id: 'l2', description: 'This is the second listing', name: 'Second Name', title: 'Second Listing', },
+      { id: 'l3', description: 'This is the third listing', name: 'Third Name', title: 'Third Listing', },
+      { id: 'l4', description: 'This is the fourth listing', name: 'Fourth Name', title: 'Fourth Listing', },
+      { id: 'l5', description: 'This is the fifth listing', name: 'Fifth Name', title: 'Fifth Listing', },
+      { id: 'l6', description: 'This is the sixth listing', name: 'Sixth Name', title: 'Sixth Listing', },
+      { id: 'l7', description: 'This is the seventh listing', name: 'Seventh Name', title: 'Seventh Listing', },
+    ],
 }
 
 /** createSlice() is a function that accepts an initial state, an object full of reducer functions, and a "slice name",
@@ -33,6 +37,7 @@ export const listingsSlice = createSlice({
 })
 
 export const { setList } = listingsSlice.actions
+export const { setActive } = listingsSlice.actions
 
 // ********** Selectors **********
 export const active = (state: State) => state.active
