@@ -7,15 +7,19 @@ The **Redux Toolkit** is a standardized way to write Redux logic (create actions
 ## Original Project Template
 > create-next-app --example with-redux
 > 
-> [Next Reference](https://redux.js.org/introduction/getting-started)
+> [Next - Redux Template](https://github.com/vercel/next.js/tree/canary/examples/with-redux)
+
 
 ## Material UI (MUI)
 > [MUI Reference](https://mui.com/material-ui/getting-started/overview/)
+> 
+> Theme created with [MUI Theme Creator](https://zenoo.github.io/mui-theme-creator)
 
 ## Counter: Redux Template Sample
 ## Listings: Moov POC 
 
 ## Redux Concepts
+> [Redux Reference](https://redux.js.org/introduction/getting-started)
 ### One way data flow
 > Redux architecture revolves around a strict unidirectional data flow.  This means that all data in an application follows the same lifecycle pattern, making the logic of your app more predictable and easier to understand.
 

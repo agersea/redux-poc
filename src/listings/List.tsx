@@ -80,6 +80,12 @@ function List(p: ListProps) {
         }}
         pageSizeOptions={[5, 10]}
         rows={dl}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
         onRowClick={(e) => {
           dispatch(setActive(e.row))
           setState({ drawerActive: true })
