@@ -57,14 +57,14 @@ function List(p: ListProps) {
     <CssBaseline />
     <Drawer
       anchor='right'
-      open={state['drawerActive']}
-      onClose={() => setState({ drawerActive: false })}
+      open={state.drawerActive}
+      onClose={() => setState({ ...state, drawerActive: false })}
     >
       <Container>
-        <h2>{al?.title}</h2>
-        <p>Name: {al?.name}</p>
-        <p>Id: {al?.id}</p>
-        <p>Description: {al?.description}</p>
+        <h2>{al?.title ?? ''}</h2>
+        <p>Name: {al?.name ?? ''}</p>
+        <p>Id: {al?.id ?? ''}</p>
+        <p>Description: {al?.description ?? ''}</p>
         <Button variant="contained" onClick={btnHandler}>Change Some Stuff</Button>
       </Container>
     </Drawer>
