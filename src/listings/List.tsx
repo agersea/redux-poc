@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useAppSelector, useAppDispatch } from '../hooks'
 import { Button, Container, CssBaseline, Drawer } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
@@ -22,11 +22,11 @@ function List(p: ListProps) {
   const [state, setState] = useState({ drawerActive: false })
 
   // create selectors to get the active listing and the list of listings
-  const al: Dto | null = useSelector((s: AppState) => s.listings.active)
-  const dl: Dto[] = useSelector(listSelector) // same as: const tl =
+  const al: Dto | null = useAppSelector((s: AppState) => s.listings.active)
+  const dl: Dto[] = useAppSelector(listSelector) // same as: const tl =
 
   // create a dispatch function to trigger actions and thunks
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   // wrap the fetchListings thunk in a useEffect hook to trigger it on page load and prevent infinite loops
   useEffect(() => { dispatch(fetchListings()) }, [])

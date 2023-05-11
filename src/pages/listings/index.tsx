@@ -14,7 +14,5 @@ export async function getStaticProps() {
     props: {
       updatedAt: new Date().toISOString(),
     },
-    // Interval in seconds for rebuilding / caching page when serving requests
-    revalidate: 1,
   }
 }
