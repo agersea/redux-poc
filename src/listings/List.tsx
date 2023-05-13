@@ -91,6 +91,7 @@ function List(p: ListProps) {
           setState({ drawerActive: true })
         }}
       />
+      { /* dl.map((e: Dto) => <h3 key={e.id}>{e.title}</h3>) */ }
     </Container>
   </>
 }
